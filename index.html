@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Romain Desfonds - Développeur Front-End & IA - Profil Hybride</title>
+    <meta name="description" content="Portfolio de Romain Desfonds - Développeur Front-End & IA en recherche d'alternance. Profil hybride Tech + Design UX/UI.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        accent: {
+                            500: '#6366f1', // Indigo pour la touche Tech/IA
+                            600: '#4f46e5',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        /* Utilitaires pour cacher la scrollbar tout en gardant le scroll fonctionnel */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+
+        #lightbox {
+            transition: opacity 0.3s ease;
+        }
+        #lightbox.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        #lightbox:not(.hidden) {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-slate-800 font-sans antialiased overflow-x-hidden">
+
+    <nav class="fixed w-full z-40 bg-white/90 backdrop-blur-md shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-2xl font-bold text-slate-900 tracking-tight">
+                        r<span class="text-brand-600">desfonds</span>.
+                    </a>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#about" class="text-slate-600 hover:text-brand-600 font-medium transition">Mon Profil</a>
+                    <a href="#skills" class="text-slate-600 hover:text-brand-600 font-medium transition">Compétences Hybrides</a>
+                    <a href="#portfolio" class="text-slate-600 hover:text-brand-600 font-medium transition">Projets</a>
+                    <a href="#contact" class="px-5 py-2.5 bg-brand-600 text-white font-semibold rounded-full hover:bg-brand-800 transition shadow-lg shadow-brand-500/30">
+                        Me recruter
+                    </a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-brand-600 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full z-40">
+            <div class="px-4 pt-2 pb-6 space-y-2 shadow-lg">
+                <a href="#about" class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-gray-50 hover:text-brand-600">Mon Profil</a>
+                <a href="#skills" class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-gray-50 hover:text-brand-600">Compétences</a>
+                <a href="#portfolio" class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-gray-50 hover:text-brand-600">Projets</a>
+                <a href="#contact" class="block px-3 py-3 rounded-md text-base font-medium text-brand-600 font-bold hover:bg-gray-50">Me recruter</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 bg-white overflow-hidden">
+        <div id="parallax-blob-1" class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-brand-50 opacity-50 blur-3xl transition-transform duration-75 ease-out will-change-transform"></div>
+        <div id="parallax-blob-2" class="absolute bottom-0 left-0 -ml-20 -mb-20 w-72 h-72 rounded-full bg-accent-100 opacity-50 blur-3xl transition-transform duration-75 ease-out will-change-transform"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-4xl mx-auto">
+                <div class="inline-flex items-center gap-2 px-4 py-2 mb-6 text-sm font-bold tracking-wide text-accent-600 uppercase bg-indigo-50 rounded-full reveal-on-scroll border border-indigo-100">
+                    <i class="fas fa-check-circle"></i> Recherche Alternance - Contrat Pro
+                </div>
+                
+                <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight mb-6 reveal-on-scroll delay-100">
+                    Développeur <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-accent-600">Front-End & IA</span>
+                </h1>
+                
+                <p class="text-lg md:text-xl text-slate-600 mb-8 reveal-on-scroll delay-200 leading-relaxed max-w-3xl mx-auto">
+                    <strong>Profil Hybride :</strong> J'allie 20 ans d'expertise visuelle à mes nouvelles compétences techniques.
+                    <br>Je suis Romain Desfonds, prêt à intégrer votre équipe pour des projets digitaux ambitieux.
+                </p>
+
+                <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-10 inline-block text-left max-w-2xl reveal-on-scroll delay-300">
+                    <div class="flex items-start gap-3">
+                        <i class="fas fa-hand-holding-usd text-green-600 text-xl mt-1"></i>
+                        <div>
+                            <h3 class="font-bold text-green-800 text-sm md:text-base">Atout Recruteur : Éligibilité aux aides à l'embauche</h3>
+                            <p class="text-green-700 text-sm mt-1">
+                                Profil expérimenté (+45 ans) en contrat de professionnalisation : bénéficiez d'aides financières spécifiques pour mon embauche en alternance.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row justify-center gap-4 reveal-on-scroll delay-300 w-full">
+                    <a href="#contact" class="px-8 py-4 bg-brand-600 text-white font-bold rounded-lg shadow-xl shadow-brand-500/20 hover:bg-brand-700 hover:-translate-y-1 transition transform">
+                        <i class="fas fa-calendar-check mr-2"></i> Discutons d'un contrat
+                    </a>
+                    <a href="chemin/vers/votre-cv.pdf" download class="px-8 py-4 bg-white text-slate-700 border border-slate-200 font-bold rounded-lg hover:bg-gray-50 hover:border-slate-300 transition flex items-center justify-center gap-2">
+                        <i class="fas fa-download"></i> Télécharger mon CV
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="relative reveal-on-scroll">
+                    <div class="aspect-w-4 aspect-h-5 bg-slate-200 rounded-2xl overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition duration-500">
+                        <img 
+                            src="img/portrait2026a.jpg" 
+                            alt="Romain Desfonds" 
+                            class="w-full h-full object-cover"
+                        >
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-xl border border-gray-100 max-w-xs">
+                        <p class="font-bold text-slate-800 text-lg">Formation Actuelle</p>
+                        <p class="text-slate-600 text-sm mt-2">
+                            <strong>Campus Numérique in the Alps</strong><br>
+                            Développeur Avancé & IA (Bac+3)
+                        </p>
+                    </div>
+                </div>
+                <div class="reveal-on-scroll delay-200">
+                    <h2 class="text-3xl font-bold text-slate-900 mb-6">De l'Image au Code</h2>
+                    
+                    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+                        Après plus de <strong>20 ans d'expérience</strong> en graphisme et communication visuelle, j'opère aujourd'hui un pivot stratégique vers le développement web.
+                    </p>
+                    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+                        Mon parcours n'est pas une simple reconversion, c'est une <strong>évolution</strong>. Ma force réside dans ma capacité à comprendre à la fois les contraintes techniques du développement et les exigences de l'expérience utilisateur (UX/UI).
+                    </p>
+                    <p class="text-slate-600 text-lg leading-relaxed mb-8">
+                        Actuellement en formation socle au Campus Numérique de Valence, je consolide mes bases techniques (JS, PHP, IA) et je recherche une entreprise pour une <strong>alternance</strong> afin de valider mon titre et mettre ma polyvalence à votre service.
+                    </p>
+                    
+                    <div class="border-l-4 border-accent-500 pl-6 bg-indigo-50 py-4 pr-4 rounded-r-lg">
+                        <h3 class="font-bold text-slate-900 mb-2">Objectif :</h3>
+                        <p class="text-slate-700 italic">
+                            "Monter en compétences au sein d'une équipe technique et contribuer concrètement à des projets en apportant ma double vision Créa/Tech."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-20 bg-slate-50 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal-on-scroll">
+                <span class="text-accent-600 font-semibold tracking-wider uppercase">Hard & Soft Skills</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2">Mes compétences hybrides</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl hover:border-accent-400 transition-all duration-300 border border-slate-100 group reveal-on-scroll">
+                    <div class="w-14 h-14 bg-accent-50 rounded-xl flex items-center justify-center text-accent-600 text-2xl mb-6 group-hover:bg-accent-600 group-hover:text-white transition-colors">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Développement Front-End</h3>
+                    <p class="text-slate-600">HTML5, CSS3, JavaScript. Capacité à intégrer des maquettes complexes avec rigueur et responsivité.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl hover:border-accent-400 transition-all duration-300 border border-slate-100 group reveal-on-scroll delay-100">
+                    <div class="w-14 h-14 bg-accent-50 rounded-xl flex items-center justify-center text-accent-600 text-2xl mb-6 group-hover:bg-accent-600 group-hover:text-white transition-colors">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">IA & Back-End Basics</h3>
+                    <p class="text-slate-600">Formation Google AI Essentials. Bases en PHP. Compréhension des enjeux de l'intelligence artificielle.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 group reveal-on-scroll delay-200">
+                    <div class="w-14 h-14 bg-brand-50 rounded-xl flex items-center justify-center text-brand-600 text-2xl mb-6 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+                        <i class="fas fa-pencil-ruler"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">UX/UI Design</h3>
+                    <p class="text-slate-600">Expertise confirmée. Maîtrise de Figma, Adobe XD. Conception d'interfaces centrées utilisateur.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 group reveal-on-scroll">
+                    <div class="w-14 h-14 bg-brand-50 rounded-xl flex items-center justify-center text-brand-600 text-2xl mb-6 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Suite Adobe & CMS</h3>
+                    <p class="text-slate-600">Photoshop, Illustrator, InDesign. Gestion et personnalisation de Wordpress et Prestashop.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 group reveal-on-scroll delay-100">
+                    <div class="w-14 h-14 bg-green-50 rounded-xl flex items-center justify-center text-green-600 text-2xl mb-6 group-hover:bg-green-600 group-hover:text-white transition-colors">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Gestion de Projet</h3>
+                    <p class="text-slate-600">Autonomie, force de proposition et capacité à travailler en mode collaboratif avec des équipes techniques.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 group reveal-on-scroll delay-200">
+                    <div class="w-14 h-14 bg-green-50 rounded-xl flex items-center justify-center text-green-600 text-2xl mb-6 group-hover:bg-green-600 group-hover:text-white transition-colors">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Esprit d'Équipe</h3>
+                    <p class="text-slate-600">Curiosité naturelle, habitude du travail en équipe (ex-responsable communication) et sens de la transmission.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal-on-scroll">
+                <span class="text-brand-600 font-semibold tracking-wider uppercase">Réalisations</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2">Background Créatif & Web</h2>
+                <p class="text-slate-500 mt-4 max-w-2xl mx-auto">
+                    Une sélection de projets démontrant mon souci du détail visuel, une compétence clé que j'applique désormais à mon code.
+                </p>
+            </div>
+
+            <div class="relative group max-w-6xl mx-auto">
+                <div id="carousel-track" class="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar pb-10 px-4">
+                    
+                    <div onclick="openLightbox(0)" class="min-w-[85%] md:min-w-[45%] lg:min-w-[31%] snap-center cursor-pointer group relative overflow-hidden rounded-2xl shadow-lg aspect-video bg-gray-100 reveal-on-scroll">
+                        <img src="branding-_packaging_siroco.jpg" alt="Site Vitrine Siroco" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-brand-900/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center text-center p-4">
+                            <i class="fas fa-search-plus text-white text-3xl mb-3 transform scale-0 group-hover:scale-100 transition-transform duration-300"></i>
+                            <h4 class="text-white text-xl font-bold transform translate-y-4 group-hover:translate-y-0 transition duration-300">Site Vitrine Siroco</h4>
+                            <p class="text-brand-100 mt-2 transform translate-y-4 group-hover:translate-y-0 transition duration-300 delay-75">Webdesign & Intégration</p>
+                        </div>
+                    </div>
+
+                    <div onclick="openLightbox(1)" class="min-w-[85%] md:min-w-[45%] lg:min-w-[31%] snap-center cursor-pointer group relative overflow-hidden rounded-2xl shadow-lg aspect-video bg-gray-100 reveal-on-scroll delay-100">
+                        <img src="https://picsum.photos/seed/pack/600/400" alt="Packaging Siroco" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-brand-900/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center text-center p-4">
+                            <i class="fas fa-search-plus text-white text-3xl mb-3 transform scale-0 group-hover:scale-100 transition-transform duration-300"></i>
+                            <h4 class="text-white text-xl font-bold transform translate-y-4 group-hover:translate-y-0 transition duration-300">Packaging Siroco</h4>
+                            <p class="text-brand-100 mt-2 transform translate-y-4 group-hover:translate-y-0 transition duration-300 delay-75">Identité visuelle & Print</p>
+                        </div>
+                    </div>
+
+                    <div onclick="openLightbox(2)" class="min-w-[85%] md:min-w-[45%] lg:min-w-[31%] snap-center cursor-pointer group relative overflow-hidden rounded-2xl shadow-lg aspect-video bg-gray-100 reveal-on-scroll delay-200">
+                        <img src="https://picsum.photos/seed/shop/600/400" alt="E-shop Nature.cos" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-brand-900/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center text-center p-4">
+                            <i class="fas fa-search-plus text-white text-3xl mb-3 transform scale-0 group-hover:scale-100 transition-transform duration-300"></i>
+                            <h4 class="text-white text-xl font-bold transform translate-y-4 group-hover:translate-y-0 transition duration-300">E-shop Nature.cos</h4>
+                            <p class="text-brand-100 mt-2 transform translate-y-4 group-hover:translate-y-0 transition duration-300 delay-75">Marketing Digital & UI</p>
+                        </div>
+                    </div>
+
+                    <div onclick="openLightbox(3)" class="min-w-[85%] md:min-w-[45%] lg:min-w-[31%] snap-center cursor-pointer group relative overflow-hidden rounded-2xl shadow-lg aspect-video bg-gray-100 reveal-on-scroll">
+                        <img src="https://picsum.photos/seed/social/600/400" alt="Réseaux Sociaux" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-brand-900/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center text-center p-4">
+                            <i class="fas fa-search-plus text-white text-3xl mb-3 transform scale-0 group-hover:scale-100 transition-transform duration-300"></i>
+                            <h4 class="text-white text-xl font-bold transform translate-y-4 group-hover:translate-y-0 transition duration-300">Réseaux Sociaux</h4>
+                            <p class="text-brand-100 mt-2 transform translate-y-4 group-hover:translate-y-0 transition duration-300 delay-75">Community Management</p>
+                        </div>
+                    </div>
+
+                    <div onclick="openLightbox(4)" class="min-w-[85%] md:min-w-[45%] lg:min-w-[31%] snap-center cursor-pointer group relative overflow-hidden rounded-2xl shadow-lg aspect-video bg-gray-100 reveal-on-scroll delay-100">
+                        <img src="https://picsum.photos/seed/book/600/400" alt="Catalogue Produit" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-brand-900/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center text-center p-4">
+                            <i class="fas fa-search-plus text-white text-3xl mb-3 transform scale-0 group-hover:scale-100 transition-transform duration-300"></i>
+                            <h4 class="text-white text-xl font-bold transform translate-y-4 group-hover:translate-y-0 transition duration-300">Catalogue Produit</h4>
+                            <p class="text-brand-100 mt-2 transform translate-y-4 group-hover:translate-y-0 transition duration-300 delay-75">Mise en page & Print</p>
+                        </div>
+                    </div>
+
+                    <div onclick="openLightbox(5)" class="min-w-[85%] md:min-w-[45%] lg:min-w-[31%] snap-center cursor-pointer group relative overflow-hidden rounded-2xl shadow-lg aspect-video bg-gray-100 reveal-on-scroll delay-200">
+                        <img src="https://picsum.photos/seed/ghost/600/400" alt="Box Halloween" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-brand-900/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center text-center p-4">
+                            <i class="fas fa-search-plus text-white text-3xl mb-3 transform scale-0 group-hover:scale-100 transition-transform duration-300"></i>
+                            <h4 class="text-white text-xl font-bold transform translate-y-4 group-hover:translate-y-0 transition duration-300">Box Halloween</h4>
+                            <p class="text-brand-100 mt-2 transform translate-y-4 group-hover:translate-y-0 transition duration-300 delay-75">Design Packaging Créatif</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <button onclick="scrollCarousel(-1)" class="absolute -left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-xl flex items-center justify-center text-brand-600 hover:bg-brand-600 hover:text-white transition-all z-20 hidden md:flex">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button onclick="scrollCarousel(1)" class="absolute -right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-xl flex items-center justify-center text-brand-600 hover:bg-brand-600 hover:text-white transition-all z-20 hidden md:flex">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 bg-slate-900 text-white relative overflow-hidden">
+        <div id="parallax-blob-3" class="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 rounded-full bg-brand-600 opacity-20 blur-3xl transition-transform duration-100 ease-out will-change-transform"></div>
+        <div id="parallax-blob-4" class="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 rounded-full bg-accent-500 opacity-10 blur-3xl transition-transform duration-100 ease-out will-change-transform"></div>
+
+        <div class="max-w-4xl mx-auto px-4 text-center relative z-10 reveal-on-scroll">
+            <h2 class="text-3xl md:text-5xl font-bold mb-6">Prêt à collaborer ?</h2>
+            <p class="text-slate-300 text-xl mb-4 leading-relaxed">
+                Je suis disponible pour un entretien afin d'échanger sur vos besoins et mon projet d'alternance.
+            </p>
+            <p class="text-accent-300 font-semibold mb-10">
+                <i class="fas fa-info-circle"></i> Éligible aux aides à l'embauche contrat pro (Profil 45+)
+            </p>
+            
+            <div class="flex flex-col md:flex-row justify-center items-center gap-8 mb-12">
+                <a href="mailto:romain.desfonds@gmail.com" class="flex items-center gap-3 text-white hover:text-brand-400 transition text-lg">
+                    <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    romain.desfonds@gmail.com
+                </a>
+                <a href="tel:0678116430" class="flex items-center gap-3 text-white hover:text-brand-400 transition text-lg">
+                    <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    06 78 11 64 30
+                </a>
+                <a href="https://linkedin.com" target="_blank" class="flex items-center gap-3 text-white hover:text-brand-400 transition text-lg">
+                    <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center">
+                        <i class="fab fa-linkedin-in"></i>
+                    </div>
+                    LinkedIn
+                </a>
+            </div>
+
+            <div class="bg-slate-800/50 p-8 rounded-2xl backdrop-blur-sm border border-slate-700">
+                <form class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+                    <div class="md:col-span-1">
+                        <label class="block text-sm font-medium text-slate-400 mb-1">Nom</label>
+                        <input type="text" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition" placeholder="Votre nom">
+                    </div>
+                    <div class="md:col-span-1">
+                        <label class="block text-sm font-medium text-slate-400 mb-1">Email</label>
+                        <input type="email" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition" placeholder="votre@email.com">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-slate-400 mb-1">Message</label>
+                        <textarea rows="4" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition" placeholder="Bonjour Romain, votre profil m'intéresse..."></textarea>
+                    </div>
+                    <div class="md:col-span-2 text-center mt-2">
+                        <button type="button" class="px-8 py-3 bg-brand-600 hover:bg-brand-500 text-white font-bold rounded-lg shadow-lg shadow-brand-600/30 transition w-full md:w-auto">
+                            Contacter Romain
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-950 text-slate-400 py-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p>&copy; 2026 Romain Desfonds. Tous droits réservés.</p>
+            <div class="text-sm">
+                Site conçu et développé par Romain Desfonds.
+            </div>
+        </div>
+    </footer>
+
+    <div id="lightbox" class="fixed inset-0 z-50 flex items-center justify-center bg-black/95 hidden backdrop-blur-sm">
+        <button class="absolute top-4 right-6 text-white text-5xl hover:text-brand-500 transition z-50" onclick="closeLightbox()">&times;</button>
+        
+        <button class="absolute left-4 text-white text-4xl p-4 hover:bg-white/10 rounded-full transition z-50" onclick="changeImage(-1)">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        
+        <div class="max-w-5xl max-h-[85vh] p-2 relative flex flex-col items-center w-full">
+            <div class="relative bg-slate-800 rounded-lg overflow-hidden shadow-2xl w-full max-w-4xl">
+                <div id="lightbox-img-container" class="w-full h-[50vh] md:h-[60vh] flex items-center justify-center bg-black">
+                     <img id="lightbox-img" src="" alt="Projet" class="w-full h-full object-contain">
+                </div>
+                
+                <div class="p-6 bg-white w-full text-center">
+                    <h3 id="lightbox-title" class="text-2xl font-bold text-slate-900 mb-2">Titre du projet</h3>
+                    <p id="lightbox-desc" class="text-slate-600">Description du projet</p>
+                </div>
+             </div>
+        </div>
+
+        <button class="absolute right-4 text-white text-4xl p-4 hover:bg-white/10 rounded-full transition z-50" onclick="changeImage(1)">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+
+    <script>
+        // --- DATA PORTFOLIO ---
+        // Liste identique à votre HTML initial pour que la Lightbox fonctionne
+        const portfolioItems = [
+            { 
+                title: "Site Vitrine Siroco", 
+                desc: "Webdesign & Intégration", 
+                image: "branding-_packaging_siroco.jpg" 
+            },
+            { 
+                title: "Packaging Siroco", 
+                desc: "Identité visuelle & Print", 
+                image: "https://picsum.photos/seed/pack/1200/800" 
+            },
+            { 
+                title: "E-shop Nature.cos", 
+                desc: "Marketing Digital & UI", 
+                image: "https://picsum.photos/seed/shop/1200/800" 
+            },
+            { 
+                title: "Réseaux Sociaux", 
+                desc: "Community Management", 
+                image: "https://picsum.photos/seed/social/1200/800" 
+            },
+            { 
+                title: "Catalogue Produit", 
+                desc: "Mise en page & Print", 
+                image: "https://picsum.photos/seed/book/1200/800" 
+            },
+            { 
+                title: "Box Halloween", 
+                desc: "Design Packaging Créatif", 
+                image: "https://picsum.photos/seed/ghost/1200/800" 
+            }
+        ];
+
+        // --- FONCTIONS CARROUSEL (AJOUTÉES) ---
+        function scrollCarousel(direction) {
+            const track = document.getElementById('carousel-track');
+            // On calcule la largeur d'un élément (div) à l'intérieur pour scroller d'un cran
+            const itemWidth = track.querySelector('div').clientWidth + 24; // Largeur item + gap (6 en Tailwind = 24px)
+            track.scrollBy({
+                left: direction * itemWidth,
+                behavior: 'smooth'
+            });
+        }
+
+        // --- FONCTIONS LIGHTBOX ---
+        let currentImageIndex = 0;
+        const lightbox = document.getElementById('lightbox');
+        const lbTitle = document.getElementById('lightbox-title');
+        const lbDesc = document.getElementById('lightbox-desc');
+        const lbImg = document.getElementById('lightbox-img');
+
+        function openLightbox(index) {
+            currentImageIndex = index;
+            updateLightboxContent();
+            lightbox.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeLightbox() {
+            lightbox.classList.add('hidden');
+            document.body.style.overflow = 'auto'; 
+        }
+
+        function changeImage(direction) {
+            currentImageIndex += direction;
+            if (currentImageIndex >= portfolioItems.length) currentImageIndex = 0;
+            if (currentImageIndex < 0) currentImageIndex = portfolioItems.length - 1;
+            updateLightboxContent();
+        }
+
+        function updateLightboxContent() {
+            const item = portfolioItems[currentImageIndex];
+            lbTitle.textContent = item.title;
+            lbDesc.textContent = item.desc;
+            lbImg.src = item.image;
+            lbImg.alt = item.title;
+        }
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape") closeLightbox();
+            if (e.key === "ArrowRight") changeImage(1);
+            if (e.key === "ArrowLeft") changeImage(-1);
+        });
+
+        // --- SCROLL ANIMATIONS ---
+        const observerOptions = {
+            threshold: 0.15, 
+            rootMargin: "0px 0px -50px 0px" 
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-on-scroll').forEach((el) => {
+            observer.observe(el);
+        });
+
+        // --- PARALLAX EFFECT ---
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const blob1 = document.getElementById('parallax-blob-1');
+            const blob2 = document.getElementById('parallax-blob-2');
+            const blob3 = document.getElementById('parallax-blob-3');
+            const blob4 = document.getElementById('parallax-blob-4');
+
+            if(blob1 && blob2) {
+                blob1.style.transform = `translateY(${scrolled * 0.4}px)`; 
+                blob2.style.transform = `translateY(${scrolled * -0.2}px)`;
+            }
+
+            if(blob3 && blob4 && (window.innerHeight + scrolled) >= document.body.offsetHeight - 1500) {
+                 const offset = scrolled - (document.body.offsetHeight - 2000);
+                 blob3.style.transform = `translateY(${offset * 0.1}px)`;
+                 blob4.style.transform = `translateY(${offset * -0.1}px)`;
+            }
+        });
+
+        // Mobile Menu Logic
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        if(btn && menu) {
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+            });
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    menu.classList.add('hidden');
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if(target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
