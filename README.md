@@ -15,7 +15,7 @@ Mon site tiendra sur une landing page, suffisant pour ma préparation et qui ser
 Il faudra que j'incorpore un lien Linkedin, mon gitHub, un bouton de DL de CV au cas où les visiteurs veulent pas scroller jusqu'en bas. L'essentiel dans mon hero et le reste sera bonus à l'attention des recruteurs.
 
 ## À faire
-- [ ] Découpage de mes besoins avec ma LLM Perplexity qui me servira d'assistant chef de projet pour l'organisation.
+- [ ] Découpage de mes besoins avec mon LLM Perplexity qui me servira d'assistant chef de projet pour l'organisation.
 - [x] Travailler ma base design, charte, typo, couleurs. Je m'inspire de ce que j'ai utilisé pour mon CV et garder une cohérence graphique.
 - [ ] Retravailler mes textes. 
 - [ ] Définir quels seront mes travaux a présenter et réaliser les visuels (bannières, pictos, etc...)
