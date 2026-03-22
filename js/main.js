@@ -1,112 +1,161 @@
-// you can write js here
-function createAndStyleElement(tag, className, content = '') {
-    const element = document.createElement(tag);
-    if (className) element.className = className;
-    if (content) element.innerHTML = content; // OK ici car tu mets du HTML
-    return element;
-}
+/* ═══════════════════════════════════════════
+   ROMAIN DESFONDS — main.js
+   ═══════════════════════════════════════════ */
 
-function createPage() {
-    const app = document.getElementById('app');
+document.addEventListener('DOMContentLoaded', () => {
 
-    // === NAVIGATION ===
-    const nav = document.createElement('nav');
+  /* ── MOBILE MENU ── */
+  const burger     = document.getElementById('burger');
+  const mobileMenu = document.getElementById('mobile-menu');
 
-    const homeLink = createAndStyleElement('a', '', 'Accueil');
-    const profilLink = createAndStyleElement('a', '', 'A propos');
-    const fetchDataLink = createAndStyleElement('a', '', 'Fetch');
-    const contactLink = createAndStyleElement('a', '', 'Contact');
+  burger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
 
-    nav.appendChild(homeLink);
-    nav.appendChild(profilLink);
-    nav.appendChild(fetchDataLink);
-    nav.appendChild(contactLink);
+  document.querySelectorAll('#mobile-menu a, .nav-links a').forEach(a => {
+    a.addEventListener('click', e => {
+      const href = a.getAttribute('href');
+      if (!href.startsWith('#')) return;
+      e.preventDefault();
+      mobileMenu.classList.remove('open');
+      const target = document.querySelector(href);
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
 
-    // === CONTENU PRINCIPAL ===
-    const mainContent = createAndStyleElement('div', 'main-content');
+  /* ── PARALLAXE PORTRAIT ──
+     L'image se déplace verticalement à un rythme différent du scroll,
+     créant un effet de profondeur dans le cadre.
+  ── */
+  const portraitImg = document.querySelector('.portrait-frame img');
+  const portraitFrame = document.querySelector('.portrait-frame');
 
-    const homeSection = createAndStyleElement(
-        'div',
-        'section active',
-        `
-        <h2>Bienvenue sur le site</h2>
-        <p>Cliquez sur le bouton pour augmenter le compteur</p>
-        <div id="counter" class="counter"></div>    
-        `
-    );
+  if (portraitImg && portraitFrame) {
+    const handlePortraitParallax = () => {
+      const rect   = portraitFrame.getBoundingClientRect();
+      const winH   = window.innerHeight;
 
-    const profilSection = createAndStyleElement('div', 'section', 'Cette page a entièrement été créée en Javascript.'
-    );
+      // Ne calcule que si le frame est visible
+      if (rect.bottom < 0 || rect.top > winH) return;
 
-    const dataSection = createAndStyleElement('div', 'section data-container', ''
-    );
+      // Progression de 0 (frame en bas d'écran) à 1 (frame en haut d'écran)
+      const progress = 1 - (rect.bottom / (winH + rect.height));
+      // Amplitude max : 15% de la hauteur du frame (correspond aux 115% de height CSS)
+      const offset   = (progress - 0.5) * rect.height * 0.15;
 
-    // On ajoute toutes les sections au mainContent
-    mainContent.appendChild(homeSection);
-    mainContent.appendChild(profilSection);
-    mainContent.appendChild(dataSection);
+      portraitImg.style.transform = `translateY(${offset}px)`;
+    };
 
-    homeLink.addEventListener('click', () => {
-        showSection(homeSection)
-    })
+    window.addEventListener('scroll', handlePortraitParallax, { passive: true });
+    handlePortraitParallax(); // init au chargement
+  }
 
-    profilLink.addEventListener('click', () => {
-        showSection(profilSection)
-    })
+  /* ── CARROUSEL ── */
+  const track = document.getElementById('carousel');
 
-    fetchDataLink.addEventListener('click', () => {
-        showSection(dataSection);
-        fetchData();
-    })
+  if (track) {
+    const cardWidth = () => {
+      const card = track.querySelector('.proj-card');
+      return card ? card.offsetWidth + 20 : 300;
+    };
 
-    function showSection(section) {
-        document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'))
-        section.classList.add('active');
+    document.getElementById('prev-btn')
+      .addEventListener('click', () => track.scrollBy({ left: -cardWidth(), behavior: 'smooth' }));
+    document.getElementById('next-btn')
+      .addEventListener('click', () => track.scrollBy({ left: cardWidth(), behavior: 'smooth' }));
+  }
 
-    }
+  /* ── LIGHTBOX ── */
+  const lbData = [
+    { title: 'Branding Siroco SAS', desc: 'Identité visuelle & Packaging', img: 'branding-_packaging_siroco.jpg' },
+    { title: 'E-shop Nature.cos',   desc: 'Marketing Digital & UI',        img: 'https://picsum.photos/seed/eshop99/1200/800' },
+    { title: 'Projet #1',           desc: 'Développement Web',             img: '' },
+    { title: 'Projet #2',           desc: 'Développement Web',             img: '' },
+    { title: 'Projet #3',           desc: 'Développement Web',             img: '' },
+  ];
 
-    // === FOOTER ===
-    const footer = createAndStyleElement(
-        'footer', '', `
-        <p>&copy; 2025 Javascript DOM, Tous droits réservés</p>
-        <p>
-            <a href="https://google.fr" target="_blank">Google</a>
-        </p>
-        `
-    );
+  let lbIdx = 0;
+  const lb      = document.getElementById('lightbox');
+  const lbImg   = document.getElementById('lb-img');
+  const lbTitle = document.getElementById('lb-title');
+  const lbDesc  = document.getElementById('lb-desc');
 
-    // AJOUT AU DOM
-    app.appendChild(nav);
-    app.appendChild(mainContent);
-    app.appendChild(footer);
-}
+  function openLb(idx) {
+    lbIdx = idx;
+    updateLb();
+    lb.classList.add('open');
+    lb.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
 
-async function fetchData() {
-    const dataContainer = document.querySelector('.data-container')
-    dataContainer.innerHTML = '';
-    
-    const loadingElement = createAndStyleElement('div', 'loading', 'Loading...');
-    dataContainer.appendChild(loadingElement);
-    try {
-const response = await fetch('https://jsonplaceholder.typicode.com/posts');
-const data = await response.json();
+  function closeLb() {
+    lb.classList.remove('open');
+    lb.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
 
-setTimeout(()=>{
-dataContainer.removeChild(loadingElement);
+  function lbNav(d) {
+    lbIdx = (lbIdx + d + lbData.length) % lbData.length;
+    updateLb();
+  }
 
-data.slice(0, 5).forEach(item => {
-    const dataTitle = createAndStyleElement('h2', '', item.title)
-    const databody = createAndStyleElement('p', '', item.body)
+  function updateLb() {
+    const d = lbData[lbIdx];
+    lbImg.src         = d.img || 'https://placehold.co/900x600/0c4a6e/7dd3fc?text=À+venir';
+    lbImg.alt         = d.title;
+    lbTitle.textContent = d.title;
+    lbDesc.textContent  = d.desc;
+  }
 
-    dataContainer.appendChild(dataTitle)
-    dataContainer.appendChild(dataBody)
-})
-}, 1000);
-    }
-    catch (error) {
-dataContainer.removeChild(loadingElement);
-dataContainer.textContent= 'Failed to fetch data';
-    }
-}
+  // Exposer closeLb et lbNav globalement (utilisés dans le HTML via onclick)
+  window.closeLb = closeLb;
+  window.lbNav   = lbNav;
 
-createPage();
+  if (track) {
+    track.addEventListener('click', e => {
+      const card = e.target.closest('.proj-card');
+      if (card) openLb(parseInt(card.dataset.index));
+    });
+  }
+
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape')     closeLb();
+    if (e.key === 'ArrowRight') lbNav(1);
+    if (e.key === 'ArrowLeft')  lbNav(-1);
+  });
+
+  /* ── FORMSPREE ── */
+  const form = document.getElementById('contact-form');
+
+  if (form) {
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      const btn = form.querySelector('.form-submit');
+      btn.textContent = 'Envoi…';
+      btn.disabled    = true;
+
+      try {
+        const r = await fetch(form.action, {
+          method:  'POST',
+          body:    new FormData(form),
+          headers: { Accept: 'application/json' }
+        });
+        if (r.ok) {
+          btn.textContent = 'Message envoyé ✓';
+          form.reset();
+        } else {
+          throw new Error();
+        }
+      } catch {
+        btn.textContent = 'Erreur — réessayez';
+        btn.disabled    = false;
+      }
+    });
+  }
+
+});
