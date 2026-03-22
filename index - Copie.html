@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Romain Desfonds — Développeur Web & UI</title>
+  <meta name="description" content="Portfolio de Romain Desfonds — Profil hybride Design × Dev, en recherche d'alternance Développeur Avancé & IA.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#"><img src="img/basic/fav-rd.png" width="60"></a>
+    <ul class="nav-links">
+      <li><a href="#about">Profil</a></li>
+      <li><a href="#skills">Compétences</a></li>
+      <li><a href="#timeline">Parcours</a></li>
+      <li><a href="#projects">Projets</a></li>
+    </ul>
+    <a class="nav-cta" href="#contact">Me recruter</a>
+    <button class="nav-burger" id="burger" aria-label="Ouvrir le menu">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+  <div id="mobile-menu" aria-label="Menu mobile">
+    <a href="#about">Profil</a>
+    <a href="#skills">Compétences</a>
+    <a href="#timeline">Parcours</a>
+    <a href="#projects">Projets</a>
+    <a href="#contact">Me recruter</a>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <!--
+    VIDÉO : quand tu as ta vidéo, remplace la div.hero-media-placeholder par :
+    <video autoplay muted loop playsinline class="hero-media" src="ta-video.mp4"></video>
+ 
+  <div class="hero-media-placeholder">
+    <i class="fas fa-film"></i>
+    <p>Vidéo à intégrer</p>
+  </div> -->
+    <video autoplay muted loop playsinline class="hero-media" src="bg-darkcode.mp4"></video>
+
+  <div class="hero-line"></div>
+  <div class="hero-vignette"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="dot"></span> Disponible pour un contrat pro en alternance dès le 1er juillet 
+    </div>
+    <div class="hero-name">ROMAIN<br><span class="last">DESFONDS</span></div>
+    <div class="hero-title">
+      <strong>Développeur Avancé & IA</strong> — en cours d'apprentissage
+    </div>
+    <p class="hero-sub">
+      <strong>Profil Hybride :</strong> J'allie 20 ans d'expertise visuelle à mes nouvelles compétences techniques.<br>
+Je suis Romain, prêt à intégrer votre équipe pour des projets digitaux ambitieux.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-blue">Me contacter</a>
+      <a href="cv_rdesfonds_developpeur_alternance.pdf" download class="btn btn-ghost">
+        <i class="fas fa-download" style="margin-right:.5rem"></i>Mon CV
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num"><span>+</span> 20</div>
+        <div class="stat-label">années d'expérience <br>Graphiste sénior  </div>
+      </div>
+      <div>
+        <div class="stat-num">Socle <span>développeur </span></div>
+        <div class="stat-label">Bases de langages et méthodes<br>en cours d'apprentissage</div>
+      </div>
+      <div>
+        <div class="stat-num"><span>+</span> 45 ans</div>
+        <div class="stat-label">Elligible à des aides<br> pour une alternance</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ AIDE BAND ═══ 
+<div class="aide-band">
+  <i class="fas fa-hand-holding-usd"></i>
+  <p>
+    Mon profil <strong>+45 ans en contrat de professionnalisation</strong>
+    ouvre droit à des aides financières spécifiques pour votre structure.
+    Un vrai avantage à l'embauche.
+  </p>
+</div>-->
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+
+      <div class="portrait-wrap">
+        <div class="portrait-frame">
+          <img
+            src="img/portrait2026a.jpg"
+            alt="Portrait de Romain Desfonds"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
+          />
+          <div class="ph" style="display:none">
+            <i class="fas fa-user"></i>
+            <p>Votre photo</p>
+          </div>
+        </div>
+        <div class="portrait-card">
+          <div class="card-label">En formation</div>
+          <p>Développeur Avancé & IA <br>Campus Numérique Valence <br>Bac+3 - <a href="https://le-campus-numerique.fr/formations-developpeur2/">Voir le détail</a></p>
+          
+        </div>
+      </div>
+
+      <div class="about-text">
+        <p class="label">Profil</p>
+        <h2>De l'image<br>au <span class="blue">code.</span></h2>
+        <p>
+        Après plus de 20 ans d'expérience en graphisme et communication visuelle, j'opère aujourd'hui un pivot stratégique vers le métier de <strong>développeur</strong>.<br>
+        Mon parcours n'est pas une simple reconversion, c'est une <strong>évolution</strong>. Ma force réside dans ma capacité à comprendre à la fois les contraintes techniques du développement et les exigences de l'expérience utilisateur (UX/UI).
+        </p>
+        <div class="quote-block">
+          Objectif :
+          "Monter en compétences au sein d'une équipe technique et contribuer concrètement à des projets en apportant ma double vision Créa/Tech."
+        </div>
+        <p>
+          Actuellement en formation socle au Campus Numérique de Valence, je consolide mes bases techniques (JS, PHP, IA) et je recherche une entreprise pour une alternance <strong>à partir du 1er juillet 2026</strong> pour valider mon diplôme.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SKILLS ═══ -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="skills-intro">
+      <div>
+        <p class="label">Compétences</p>
+        <h2>Stack<br>& <span class="blue">outils</span></h2>
+      </div>
+      <p>
+        Une double compétence construite sur 20 ans de pratique graphique et une formation
+        technique en cours d'acquisition. Ce que je maîtrise, ce que j'apprends — et la rare
+        capacité à comprendre les deux côtés d'un projet digital.
+      </p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="sk-icon"><i class="fas fa-pencil-ruler"></i></div>
+        <div class="sk-title">UX / UI Design</div>
+        <div class="sk-desc">Figma, prototypage, maquettage. Conception d'interfaces centrées utilisateur. Adobe CC complet. <br>Méthodes AGILE (en acquisition).</div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-icon"><i class="fas fa-code"></i></div>
+        <div class="sk-title">Front-End</div>
+        <div class="sk-desc">HTML5, CSS3, JavaScript. Intégration, responsive, mobile first. Sensibilité accessibilité. </div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-icon"><i class="fas fa-layer-group"></i></div>
+        <div class="sk-title">CMS & E-commerce</div>
+        <div class="sk-desc">WordPress, Prestashop — intégration, personnalisation, gestion. Enjeux e-shop et tunnel de vente.</div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-icon"><i class="fab fa-git-alt"></i></div>
+        <div class="sk-title">Git / GitHub - (en acquisition)</div>
+        <div class="sk-desc">Versioning, branches, workflow collaboratif. Je comprends la rigueur du travail en équipe technique.</div>
+      </div>
+      
+           <div class="skill-card">
+        <div class="sk-icon"><i class="fas fa-robot"></i></div>
+        <div class="sk-title">IA Responsable - (en acquisition)</div>
+        <div class="sk-desc">Google AI Essentials. Utilisateur quotidien de différents LLMs (vérification, organisation, correction). ChatGPT, Claude, Gemini, Perplexity, Copilot...</div>
+      </div>
+
+       <div class="skill-card">
+        <div class="sk-icon"><i class="fas fa-code"></i></div>
+        <div class="sk-title">Back-End - (en acquisition)</div>
+        <div class="sk-desc">PHP, Javascript, JAVA, Python, SQL. Frameworks Laravel, Bootstrap, Angular. </div>
+      </div>
+       
+      
+  
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HARD / SOFT ═══ -->
+<section id="hardsoft">
+  <div class="section-inner">
+    <p class="label">Hard & Soft skills</p>
+    <h2>Ce que je sais faire.<br>Comment je <span class="blue">travaille.</span></h2>
+    <div class="hs-grid">
+      <div>
+        <div class="hs-col-head">Hard skills — Technique</div>
+        <ul class="hs-list">
+          <li>HTML5 / CSS3 — intégration</li>
+          <li>Webdesign UX / UI — Figma, Adobe CC</li>
+          <li>Git / GitHub — versioning, workflow collaboratif</li>
+          <li>Déjà travaillé avec les CMS WordPress & Prestashop</li>
+          <li>Utilisateur IA (Claude, ChatGPT, Gemini, Copilot…)</li>
+          <li>Javascript, PHP, Laravel <em style="opacity:.5">(en apprentissage)</em></li>
+          <li>Java, Python, SQL, Méthode Agile <em style="opacity:.5">(en apprentissage)</em></li>
+        </ul>
+      </div>
+      <div>
+        <div class="hs-col-head">Soft skills — Humain</div>
+        <ul class="hs-list">
+          <li>Autonomie — Travail en équipe</li>
+          <li>Gestion de projet — délais, budgets, enjeux client</li>
+          <li>Communication transverse (créa, tech, client)</li>
+          <li>Force de proposition et sens du détail</li>
+          <li>Curiosité permanente et veille active</li>
+          <li>Transmission — formation d'équipes à des outils créatifs</li>
+          <li>Reconversion proactive et capacité d'adaptation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TIMELINE ═══ -->
+<section id="timeline">
+  <div class="section-inner">
+    <p class="label">Parcours</p>
+    <h2>Une trajectoire<br><span class="blue">cohérente.</span></h2>
+    <div class="tl-items">
+
+      <div class="tl-item current">
+        <div class="tl-year">2025<br>→ Auj.</div>
+        <div class="tl-bar"></div>
+        <div class="tl-body">
+          <div class="tl-role">Formation Développeur Avancé & IA</div>
+          <div class="tl-org">Campus Numérique in the Alps · Valence · Bac+3</div>
+          <div class="tl-desc">Socle front/back en cours. Recherche d'alternance active à partir du 1er juillet 2026.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-year">2024</div>
+        <div class="tl-bar"></div>
+        <div class="tl-body">
+          <div class="tl-role">Formation Google AI Essentials</div>
+          <div class="tl-org">Google / Coursera</div>
+          <div class="tl-desc">Certification IA, découverte et usage professionnel des LLMs.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-year">2020<br>→ 2024</div>
+        <div class="tl-bar"></div>
+        <div class="tl-body">
+          <div class="tl-role">Responsable Communication & Packaging</div>
+          <div class="tl-org">Siroco SAS</div>
+          <div class="tl-desc">Direction artistique, identité visuelle, packaging, intégration web. Collaboration étroite avec les fournisseurs et les équipes produit en Chine.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-year">2013<br>→ 2018</div>
+        <div class="tl-bar"></div>
+        <div class="tl-body">
+          <div class="tl-role">Graphiste Web Multimédia</div>
+          <div class="tl-org">Nature.cos</div>
+          <div class="tl-desc">Création maquettes web et emailings (HTML/CSS, responsive). Gestion de projets numériques, intégration éléments interactifs. Gestion de 3 e-shop, community management pour 3 marques. Photos packshot.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-year">2002<br>→ 2012</div>
+        <div class="tl-bar"></div>
+        <div class="tl-body">
+          <div class="tl-role">Graphiste Print & Web</div>
+          <div class="tl-org">SVD · Drôme Studio · Konext · Ceanothe · Creacom</div>
+          <div class="tl-desc">Identités visuelles, illustration, print, webdesign. Veille technologique continue sur les tendances UI/UX.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROJECTS ═══ -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="projects-head">
+      <div>
+        <p class="label">Réalisations</p>
+        <h2>Background créatif<br>& projets <span class="blue">dev.</span></h2>
+      </div>
+      <div class="carousel-nav">
+        <button class="carousel-btn" id="prev-btn" aria-label="Projet précédent">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <button class="carousel-btn" id="next-btn" aria-label="Projet suivant">
+          <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="carousel-track" id="carousel">
+
+      <div class="proj-card" data-index="0">
+        <div class="proj-thumb">
+          <img src="branding-_packaging_siroco.jpg" alt="Branding Siroco"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div class="ph-img" style="display:none"><i class="fas fa-image"></i><p>Image à venir</p></div>
+          <div class="proj-overlay"><i class="fas fa-expand"></i><span>Voir</span></div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-cat">Identité visuelle & Packaging</div>
+          <div class="proj-title">Branding Siroco SAS</div>
+        </div>
+      </div>
+
+      <div class="proj-card" data-index="1">
+        <div class="proj-thumb">
+          <img src="https://picsum.photos/seed/eshop99/600/380" alt="E-shop Nature.cos">
+          <div class="proj-overlay"><i class="fas fa-expand"></i><span>Voir</span></div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-cat">Marketing Digital & UI</div>
+          <div class="proj-title">E-shop Nature.cos</div>
+        </div>
+      </div>
+
+      <div class="proj-card" data-index="2">
+        <div class="proj-thumb"><div class="ph-img"><i class="fas fa-code"></i><p>Projet GitHub · À venir</p></div></div>
+        <div class="proj-body"><div class="proj-cat">Développement Web</div><div class="proj-title">Projet #1 — En cours</div></div>
+      </div>
+
+      <div class="proj-card" data-index="3">
+        <div class="proj-thumb"><div class="ph-img"><i class="fas fa-code"></i><p>Projet GitHub · À venir</p></div></div>
+        <div class="proj-body"><div class="proj-cat">Développement Web</div><div class="proj-title">Projet #2 — En cours</div></div>
+      </div>
+
+      <div class="proj-card" data-index="4">
+        <div class="proj-thumb"><div class="ph-img"><i class="fas fa-code"></i><p>Projet GitHub · À venir</p></div></div>
+        <div class="proj-body"><div class="proj-cat">Développement Web</div><div class="proj-title">Projet #3 — En cours</div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+
+      <div class="contact-info">
+        <p class="label">Contact</p>
+        <h2>On discute<br>d'une <span class="blue">alternance ?</span></h2>
+        <p>
+          Je suis disponible à partir du 1er juillet 2026. Si mon profil hybride
+          design × dev correspond à un besoin dans votre structure, écrivez-moi.
+        </p>
+        <div class="contact-links">
+          <a href="mailto:romain.desfonds@gmail.com" class="contact-link">
+            <i class="fas fa-envelope"></i> romain.desfonds@gmail.com
+          </a>
+          <a href="tel:+33678116430" class="contact-link">
+            <i class="fas fa-phone"></i> 06 78 11 64 30
+          </a>
+          <a href="https://linkedin.com/in/romain-desfonds" target="_blank" rel="noopener" class="contact-link">
+            <i class="fab fa-linkedin"></i> linkedin.com/in/romain-desfonds
+          </a>
+          <a href="https://github.com" target="_blank" rel="noopener" class="contact-link">
+            <i class="fab fa-github"></i> GitHub
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <!--
+          FORMSPREE : remplace YOUR_FORM_ID par ton vrai ID
+          1. Crée un compte sur https://formspree.io
+          2. Crée un formulaire → copie l'ID (ex: xpwzgkbl)
+        -->
+        <form class="contact-form" id="contact-form"
+              action="https://formspree.io/f/YOUR_FORM_ID"
+              method="POST" novalidate>
+          <div class="form-row">
+            <div>
+              <label for="name">Nom</label>
+              <input type="text" id="name" name="name" placeholder="Votre nom" required>
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="votre@email.com" required>
+            </div>
+          </div>
+          <div>
+            <label for="company">Société</label>
+            <input type="text" id="company" name="company" placeholder="Nom de votre structure">
+          </div>
+          <div>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5"
+                      placeholder="Bonjour Romain, votre profil m'intéresse pour…" required></textarea>
+          </div>
+          <button type="submit" class="form-submit">Envoyer le message</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <p>© 2026 Romain Desfonds — Développeur Web & UI · Montélier (26)</p>
+  <div class="footer-status">
+    <div class="status-dot"></div>
+    <span class="status-label">Disponible en alternance dès juillet 2026</span>
+  </div>
+</footer>
+
+<!-- ═══ LIGHTBOX ═══ -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+  <button class="lb-close" onclick="closeLb()" aria-label="Fermer">&times;</button>
+  <button class="lb-arrow prev" onclick="lbNav(-1)" aria-label="Projet précédent">
+    <i class="fas fa-chevron-left"></i>
+  </button>
+  <div style="text-align:center">
+    <img id="lb-img" src="" alt="">
+    <div class="lb-caption">
+      <strong id="lb-title"></strong>
+      <span id="lb-desc"></span>
+    </div>
+  </div>
+  <button class="lb-arrow next" onclick="lbNav(1)" aria-label="Projet suivant">
+    <i class="fas fa-chevron-right"></i>
+  </button>
+</div>
+
+<!-- Script en fin de body, après le DOM -->
+<script src="js/main.js"></script>
+
+</body>
+</html>

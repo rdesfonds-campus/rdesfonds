@@ -192,6 +192,7 @@ h2 .blue { color: var(--blue); }
 }
 .portrait-card .card-label { font-size: .65rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.65); margin-bottom: .4rem; }
 .portrait-card p { font-size: .82rem; font-weight: 500; line-height: 1.5; }
+.portrait-card a {color:#7dd3fc;}
 
 .about-text p { font-size: 1rem; font-weight: 400; line-height: 1.8; color: var(--ink2); margin-bottom: 1.1rem; }
 .about-text p strong { color: var(--ink); font-weight: 700; }
@@ -201,7 +202,6 @@ h2 .blue { color: var(--blue); }
   background: var(--blue-soft); margin: 1.75rem 0;
   font-size: 1.05rem; font-weight: 600; color: var(--blue-dark);
   line-height: 1.6; border-radius: 0 4px 4px 0;
-  font-style: italic;
 }
 
 /* ── SKILLS ── */
