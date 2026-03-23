@@ -23,109 +23,119 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* ── PARALLAXE PORTRAIT ──
-     L'image se déplace verticalement à un rythme différent du scroll,
-     créant un effet de profondeur dans le cadre.
-  ── */
-  const portraitImg = document.querySelector('.portrait-frame img');
+  /* ── PARALLAXE PORTRAIT ── */
+  const portraitImg   = document.querySelector('.portrait-frame img');
   const portraitFrame = document.querySelector('.portrait-frame');
 
   if (portraitImg && portraitFrame) {
     const handlePortraitParallax = () => {
-      const rect   = portraitFrame.getBoundingClientRect();
-      const winH   = window.innerHeight;
-
-      // Ne calcule que si le frame est visible
+      const rect = portraitFrame.getBoundingClientRect();
+      const winH = window.innerHeight;
       if (rect.bottom < 0 || rect.top > winH) return;
-
-      // Progression de 0 (frame en bas d'écran) à 1 (frame en haut d'écran)
       const progress = 1 - (rect.bottom / (winH + rect.height));
-      // Amplitude max : 15% de la hauteur du frame (correspond aux 115% de height CSS)
       const offset   = (progress - 0.5) * rect.height * 0.15;
-
       portraitImg.style.transform = `translateY(${offset}px)`;
     };
-
     window.addEventListener('scroll', handlePortraitParallax, { passive: true });
-    handlePortraitParallax(); // init au chargement
+    handlePortraitParallax();
   }
 
-  /* ── CARROUSEL ── */
-  const track = document.getElementById('carousel');
+  /* ── LIGHTBOX + CAROUSEL ── */
+  const lightbox = document.getElementById('lightbox');
+  const lbImg    = document.getElementById('lb-img');
+  const lbPh     = document.getElementById('lb-placeholder');
+  const lbTitle  = document.getElementById('lb-title');
+  const lbCat    = document.getElementById('lb-cat');
+  const lbLink   = document.getElementById('lb-link');
+  const lbClose  = document.getElementById('lb-close');
+  const lbPrev   = document.getElementById('lb-prev');
+  const lbNext   = document.getElementById('lb-next');
+  const track    = document.getElementById('carousel');
 
-  if (track) {
-    const cardWidth = () => {
-      const card = track.querySelector('.proj-card');
-      return card ? card.offsetWidth + 20 : 300;
-    };
+  const cards = Array.from(document.querySelectorAll('.proj-card'));
+  let current = 0;
 
-    document.getElementById('prev-btn')
-      .addEventListener('click', () => track.scrollBy({ left: -cardWidth(), behavior: 'smooth' }));
-    document.getElementById('next-btn')
-      .addEventListener('click', () => track.scrollBy({ left: cardWidth(), behavior: 'smooth' }));
-  }
+  function openLb(index) {
+    current = ((index % cards.length) + cards.length) % cards.length;
+    const card  = cards[current];
+    const img   = card.dataset.img   || '';
+    const title = card.dataset.title || '';
+    const cat   = card.dataset.cat   || '';
+    const link  = card.dataset.link  || '';
+    const label = card.dataset.label || 'En savoir plus';
 
-  /* ── LIGHTBOX ── */
-  const lbData = [
-    { title: 'Branding Siroco SAS', desc: 'Identité visuelle & Packaging', img: 'branding-_packaging_siroco.jpg' },
-    { title: 'E-shop Nature.cos',   desc: 'Marketing Digital & UI',        img: 'https://picsum.photos/seed/eshop99/1200/800' },
-    { title: 'Projet #1',           desc: 'Développement Web',             img: '' },
-    { title: 'Projet #2',           desc: 'Développement Web',             img: '' },
-    { title: 'Projet #3',           desc: 'Développement Web',             img: '' },
-  ];
+    if (img) {
+      lbImg.src = img;
+      lbImg.alt = title;
+      lbImg.style.display = 'block';
+      lbPh.style.display  = 'none';
+    } else {
+      lbImg.style.display = 'none';
+      lbPh.style.display  = 'flex';
+    }
 
-  let lbIdx = 0;
-  const lb      = document.getElementById('lightbox');
-  const lbImg   = document.getElementById('lb-img');
-  const lbTitle = document.getElementById('lb-title');
-  const lbDesc  = document.getElementById('lb-desc');
+    lbTitle.textContent = title;
+    lbCat.textContent   = cat;
 
-  function openLb(idx) {
-    lbIdx = idx;
-    updateLb();
-    lb.classList.add('open');
-    lb.setAttribute('aria-hidden', 'false');
+    if (link) {
+      lbLink.href = link;
+      lbLink.innerHTML = `<i class="fas fa-arrow-up-right-from-square"></i> ${label}`;
+      lbLink.classList.remove('hidden');
+    } else {
+      lbLink.classList.add('hidden');
+    }
+
+    lbPrev.style.opacity = '1';
+    lbNext.style.opacity = '1';
+
+    lightbox.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
 
   function closeLb() {
-    lb.classList.remove('open');
-    lb.setAttribute('aria-hidden', 'true');
+    lightbox.classList.remove('open');
     document.body.style.overflow = '';
   }
 
-  function lbNav(d) {
-    lbIdx = (lbIdx + d + lbData.length) % lbData.length;
-    updateLb();
-  }
-
-  function updateLb() {
-    const d = lbData[lbIdx];
-    lbImg.src         = d.img || 'https://placehold.co/900x600/0c4a6e/7dd3fc?text=À+venir';
-    lbImg.alt         = d.title;
-    lbTitle.textContent = d.title;
-    lbDesc.textContent  = d.desc;
-  }
-
-  // Exposer closeLb et lbNav globalement (utilisés dans le HTML via onclick)
-  window.closeLb = closeLb;
-  window.lbNav   = lbNav;
-
-  if (track) {
-    track.addEventListener('click', e => {
-      const card = e.target.closest('.proj-card');
-      if (card) openLb(parseInt(card.dataset.index));
-    });
-  }
-
-  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  cards.forEach((card, i) => card.addEventListener('click', () => openLb(i)));
+  lbClose.addEventListener('click', closeLb);
+  lbPrev.addEventListener('click', () => openLb(current - 1));
+  lbNext.addEventListener('click', () => openLb(current + 1));
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLb(); });
 
   document.addEventListener('keydown', e => {
-    if (!lb.classList.contains('open')) return;
+    if (!lightbox.classList.contains('open')) return;
     if (e.key === 'Escape')     closeLb();
-    if (e.key === 'ArrowRight') lbNav(1);
-    if (e.key === 'ArrowLeft')  lbNav(-1);
+    if (e.key === 'ArrowLeft')  openLb(current - 1);
+    if (e.key === 'ArrowRight') openLb(current + 1);
   });
+
+  /* ── CAROUSEL SCROLL ── */
+  if (track) {
+    const getCardWidth = () => {
+      const card = track.querySelector('.proj-card');
+      return card ? card.offsetWidth + 20 : 320;
+    };
+
+    const isAtEnd   = () => track.scrollLeft + track.offsetWidth >= track.scrollWidth - 2;
+    const isAtStart = () => track.scrollLeft <= 2;
+
+    document.getElementById('next-btn').addEventListener('click', () => {
+      if (isAtEnd()) {
+        track.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        track.scrollBy({ left: getCardWidth(), behavior: 'smooth' });
+      }
+    });
+
+    document.getElementById('prev-btn').addEventListener('click', () => {
+      if (isAtStart()) {
+        track.scrollTo({ left: track.scrollWidth, behavior: 'smooth' });
+      } else {
+        track.scrollBy({ left: -getCardWidth(), behavior: 'smooth' });
+      }
+    });
+  }
 
   /* ── FORMSPREE ── */
   const form = document.getElementById('contact-form');
