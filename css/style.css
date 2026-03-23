@@ -54,8 +54,13 @@ nav {
 .nav-links { display: flex; gap: 2rem; list-style: none; }
 .nav-links a { font-size: .78rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .2s; }
 .nav-links a:hover { color: var(--blue); }
+
+.nav-actions { display: flex; align-items: center; gap: .75rem; }
 .nav-cta { font-size: .78rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--white); background: var(--blue); padding: .6rem 1.4rem; text-decoration: none; border-radius: 4px; transition: background .2s; }
 .nav-cta:hover { background: var(--blue-dark); }
+.nav-cv { font-size: .78rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--blue); border: 1px solid rgba(2,132,199,.35); padding: .6rem 1.2rem; text-decoration: none; border-radius: 4px; transition: all .2s; display: inline-flex; align-items: center; gap: .5rem; }
+.nav-cv:hover { background: var(--blue-soft); border-color: var(--blue); }
+
 .nav-burger { display: none; background: none; border: none; cursor: pointer; color: var(--ink); font-size: 1.25rem; }
 
 #mobile-menu {
@@ -66,7 +71,7 @@ nav {
 #mobile-menu.open { display: block; }
 #mobile-menu a { display: block; padding: .75rem 0; border-bottom: 1px solid var(--border); font-size: .9rem; font-weight: 600; color: var(--ink2); text-decoration: none; }
 #mobile-menu a:last-child { border-bottom: none; color: var(--blue); }
-
+#mobile-menu a:last-child i { margin-right: .35rem; }
 /* ── HERO ── */
 #hero {
   position: relative; min-height: 100svh;
@@ -373,7 +378,7 @@ footer p { font-size: .72rem; font-weight: 500; color: rgba(255,255,255,.25); le
 
 /* ── RESPONSIVE ── */
 @media (max-width: 960px) {
-  .nav-links, .nav-cta { display: none; }
+  .nav-links, .nav-actions { display: none; }
   .nav-burger { display: block; }
   .about-grid   { grid-template-columns: 1fr; gap: 3rem; }
   .portrait-card{ position: static; margin-top: 1.25rem; max-width: 100%; }
@@ -386,7 +391,6 @@ footer p { font-size: .72rem; font-weight: 500; color: rgba(255,255,255,.25); le
   .proj-card    { flex: 0 0 85%; }
   .hero-content { padding-left: var(--gutter); }
   .hero-line    { display: none; }
-  /* Désactiver background-attachment: fixed sur mobile (mauvais support) */
   #hero { background-attachment: scroll; }
 }
 @media (max-width: 580px) {
